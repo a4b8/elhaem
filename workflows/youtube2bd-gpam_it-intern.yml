@@ -1,0 +1,16 @@
+on:
+  youtube:
+    channel_id:
+      - UCVkbqgnJ4VkhDIuzlcM_Icw
+    playlist_id:
+      - PLZ7pfAnYMac3_vclXkGDPXMWu551_Pglp
+jobs:
+  send2webex:
+    name: 'Perform REST API'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sende an Webex
+        uses: joelwmale/webhook-action@master
+        with:
+          url: ${{ secrets.BD_GPAM_IT_INTERN_WEBEX_WEBHOOK_URL }}
+          body: '{"markdown": "${{on.youtube.outputs.title}}<br>${{on.youtube.outputs.description}}<br>${{on.youtube.outputs.link}}"}'
