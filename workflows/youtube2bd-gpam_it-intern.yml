@@ -9,8 +9,13 @@ jobs:
     name: 'Perform REST API'
     runs-on: ubuntu-latest
     steps:
-      - name: Sende an Webex
+      - name: Sende Beschreibung
         uses: joelwmale/webhook-action@master
         with:
           url: ${{ secrets.BD_GPAM_IT_INTERN_WEBEX_WEBHOOK_URL }}
-          body: '{"markdown": "${{on.youtube.outputs.title}}<br>${{on.youtube.outputs.description}}<br>${{on.youtube.outputs.link}}"}'
+          body: '{"markdown": "<b>${{on.youtube.outputs.title}}</b><br><br>${{on.youtube.outputs.description}}<br><br>${{on.youtube.outputs.link}}"}'
+      - name: Sende Link
+        uses: joelwmale/webhook-action@master
+        with:
+          url: ${{ secrets.BD_GPAM_IT_INTERN_WEBEX_WEBHOOK_URL }}
+          body: '{"text": "${{on.youtube.outputs.link}}"}'
