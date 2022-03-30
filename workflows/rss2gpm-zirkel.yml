@@ -1,0 +1,25 @@
+on:
+  rss:
+    url: https://www.kurze-prozesse.de/feed/
+    config:
+      limit: 1
+jobs:
+  send2webex:
+    name: 'Perform REST API'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sende Titel
+        uses: joelwmale/webhook-action@master
+        with:
+          url: ${{ secrets.GPM_ZIRKEL_BD_WEBEX_WEBHOOK_URL }}
+          body: '{"markdown": "<b>${{on.rss.outputs.title}}</b><br>"}'
+      - name: Sende Beschreibung
+        uses: joelwmale/webhook-action@master
+        with:
+          url: ${{ secrets.GPM_ZIRKEL_BD_WEBEX_WEBHOOK_URL }}
+          body: '{"markdown": "${{on.rss.outputs.contentSnippet}}<br>"}'
+      - name: Sende Link
+        uses: joelwmale/webhook-action@master
+        with:
+          url: ${{ secrets.GPM_ZIRKEL_BD_WEBEX_WEBHOOK_URL }}
+          body: '{"text": "${{on.rss.outputs.link}}"}'
