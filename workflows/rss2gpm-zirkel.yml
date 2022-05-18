@@ -2,6 +2,7 @@ on:
   rss:
     url: https://www.kurze-prozesse.de/feed/
     config:
+      active: false
       limit: 1
 jobs:
   send2webex:
