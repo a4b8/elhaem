@@ -4,6 +4,8 @@ on:
       - UCVkbqgnJ4VkhDIuzlcM_Icw
     playlist_id:
       - PLZ7pfAnYMac3_vclXkGDPXMWu551_Pglp
+    config:
+      active: false
 jobs:
   send2webex:
     name: 'Perform REST API'
